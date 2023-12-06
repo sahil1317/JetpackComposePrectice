@@ -1,4 +1,4 @@
-package com.sahil.jetpackcomposeprectice
+package com.sahil.myapplication
 
 import org.junit.Test
 

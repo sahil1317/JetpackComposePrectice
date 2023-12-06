@@ -1,4 +1,4 @@
-package com.sahil.jetpackcomposeprectice.ui.theme
+package com.sahil.myapplication.ui.theme
 
 import androidx.compose.ui.graphics.Color
 
