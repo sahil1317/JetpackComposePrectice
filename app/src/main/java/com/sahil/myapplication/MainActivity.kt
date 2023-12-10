@@ -1,10 +1,12 @@
 package com.sahil.myapplication
 
 import android.os.Bundle
+import android.util.Log
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.compose.foundation.BorderStroke
 import androidx.compose.foundation.Image
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
@@ -38,8 +40,9 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import androidx.compose.ui.unit.sp
 
-val profileList:ArrayList<String> = arrayListOf("Jhon deo","Marin Kanen","Allex dued","Kavin semon","Vikas","Dubbey","pritty","Kolen","Samphil")
+val profileList:ArrayList<String> = arrayListOf("Text Example","Profile Card","List Example","Theme Example","Navigation Example")
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -99,26 +102,27 @@ fun ProfileCard(profile: String) {
     Card(modifier= Modifier
         .fillMaxWidth()
         .wrapContentHeight(align = Alignment.Top)
-        .padding(16.dp),
+        .padding(top=7.dp, bottom = 7.dp, start = 10.dp, end = 10.dp),
         elevation = CardDefaults.cardElevation(8.dp)) {
         Row (modifier = Modifier.wrapContentSize(),
             verticalAlignment = Alignment.CenterVertically,
             horizontalArrangement = Arrangement.Start){
-            ProfilePicture()
-            ProfileContent(profile)
+//            ProfilePicture()
+            ProfileContent(profile){
+                Log.e("ProfileTAg","Print user Name ${it}")
+            }
         }
     }
 }
 
 @Composable
-fun ProfileContent(profile: String) {
+fun ProfileContent(profile: String,onClick:(name:String)->Unit) {
     Column(modifier = Modifier
         .padding(8.dp)
         .fillMaxWidth()) {
-        Text(text = profile, style = MaterialTheme.typography.headlineSmall)
-        Text(text = "Active now",
-            style = MaterialTheme.typography.labelMedium,
-            modifier = Modifier.alpha(0.5f))
+        Text(text = profile, style = MaterialTheme.typography.headlineSmall,  fontSize = 18.sp,modifier = Modifier.padding(8.dp).clickable {
+            onClick.invoke(profile)
+        })
     }
 
 }
